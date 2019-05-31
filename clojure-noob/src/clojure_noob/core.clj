@@ -32,6 +32,28 @@
                              {:name "left-achilles" :size 1}
                              {:name "left-foot" :size 2}])
 
+(def asym-alien-body-parts [{:name "head" :size 3}
+                             {:name "1-eye" :size 1}
+                             {:name "1-ear" :size 1}
+                             {:name "mouth" :size 1}
+                             {:name "nose" :size 1}
+                             {:name "neck" :size 2}
+                             {:name "1-shoulder" :size 3}
+                             {:name "1-upper-arm" :size 3}
+                             {:name "chest" :size 10}
+                             {:name "back" :size 10}
+                             {:name "1-forearm" :size 3}
+                             {:name "abdomen" :size 6}
+                             {:name "1-kidney" :size 1}
+                             {:name "1-hand" :size 2}
+                             {:name "1-knee" :size 2}
+                             {:name "1-thigh" :size 4}
+                             {:name "1-lower-leg" :size 3}
+                             {:name "1-achilles" :size 1}
+                             {:name "1-foot" :size 2}])
+
+
+
 (defn matching-part
   [part]
   {:name (clojure.string/replace (:name part) #"^left-" "right-")
@@ -58,6 +80,10 @@
           []
           asym-body-parts))
 
+(defn symmetrize-alien-body-parts
+  "\"Aliens\""
+  [asym-body-parts])
+
 (defn hit
   [asym-body-parts]
   (let [sym-parts (better-symmetrize-body-parts asym-body-parts)
@@ -68,3 +94,7 @@
       (if (> accumulated-size target)
         part
         (recur remaining (+ accumulated-size (:size (first remaining))))))))
+
+(defn mapset
+  [f arr]
+  (set (map f arr)))
